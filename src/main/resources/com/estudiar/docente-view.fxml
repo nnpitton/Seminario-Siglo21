@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.estudiar.controller.DocenteController">
+    <top>
+        <Label text="Panel del Docente" style="-fx-font-size: 18; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <Button text="Registrar Clase" onAction="#abrirRegistrarClase"/>
+            <Button text="Enviar Mensaje"/>
+            <Button text="Consultar Agenda" onAction="#handleConsultarAgenda" layoutX="50" layoutY="150"/>
+
+            <Button text="Cerrar Sesión" onAction="#handleLogout"/>
+        </VBox>
+    </center>
+</BorderPane>

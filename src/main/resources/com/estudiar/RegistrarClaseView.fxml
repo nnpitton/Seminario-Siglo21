@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.estudiar.controller.ClaseController"
+            prefWidth="600" prefHeight="400">
+
+    <VBox spacing="10">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="Registrar nueva clase" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+        <HBox spacing="10">
+            <Label text="Título:" prefWidth="120"/>
+            <TextField fx:id="txtTitulo" prefWidth="300"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Tema:" prefWidth="120"/>
+            <TextField fx:id="txtTema" prefWidth="300"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Objetivos:" prefWidth="120"/>
+            <TextArea fx:id="txtObjetivos" prefWidth="300" prefHeight="80"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Fecha:" prefWidth="120"/>
+            <DatePicker fx:id="dpFecha"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Materia:" prefWidth="120"/>
+            <ComboBox fx:id="cbMateria" prefWidth="200"/>
+        </HBox>
+
+        <Button fx:id="btnGuardar" text="Guardar Clase" onAction="#registrarClase"
+                style="-fx-background-color: #2e8b57; -fx-text-fill: white;"/>
+
+    </VBox>
+</AnchorPane>

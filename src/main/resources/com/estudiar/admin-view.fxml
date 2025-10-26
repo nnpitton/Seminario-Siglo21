@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.estudiar.controller.AdminController">
+    <top>
+        <Label text="Panel del Administrador" style="-fx-font-size: 18; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <Button text="Gestionar Usuarios"/>
+            <Button text="Ver Auditoría"/>
+            <Button text="Cerrar Sesión" onAction="#handleLogout"/>
+        </VBox>
+    </center>
+</BorderPane>
