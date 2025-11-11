@@ -5,8 +5,6 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Date;
 
-
-
 import com.estudiar.model.Clase;
 import com.estudiar.utils.ConexionDB;
 
@@ -37,27 +35,32 @@ public class ClaseDAO {
             return false;
         }
     }
+
     public List<Clase> obtenerClasesPorUsuario(int idUsuario, String rol, String filtroMateria, Date fechaDesde, Date fechaHasta) {
         List<Clase> clases = new ArrayList<>();
         String sql = "";
 
         switch (rol.toUpperCase()) {
-            case "DOCENTE" -> sql = "SELECT c.* FROM clase c WHERE c.id_docente = ? AND c.activo = 1";
+            case "DOCENTE" -> sql = """
+                SELECT c.* FROM clase c
+                JOIN materia m ON c.id_materia = m.id_materia
+                WHERE c.id_docente = ? AND c.activo = 1
+            """;
             case "ALUMNO" -> sql = """
-            SELECT c.* FROM clase c
-            JOIN materia m ON c.id_materia = m.id_materia
-            JOIN curso cu ON cu.id_curso = m.id_curso
-            JOIN alumno a ON a.id_curso = cu.id_curso
-            WHERE a.id_alumno = ? AND c.activo = 1
-        """;
+                SELECT c.* FROM clase c
+                JOIN materia m ON c.id_materia = m.id_materia
+                JOIN curso cu ON cu.id_curso = m.id_curso
+                JOIN alumno a ON a.id_curso = cu.id_curso
+                WHERE a.id_alumno = ? AND c.activo = 1
+            """;
             case "PADRE" -> sql = """
-            SELECT c.* FROM clase c
-            JOIN materia m ON c.id_materia = m.id_materia
-            JOIN curso cu ON cu.id_curso = m.id_curso
-            JOIN alumno a ON a.id_curso = cu.id_curso
-            JOIN padre_alumno pa ON pa.id_alumno = a.id_alumno
-            WHERE pa.id_padre = ? AND c.activo = 1
-        """;
+                SELECT c.* FROM clase c
+                JOIN materia m ON c.id_materia = m.id_materia
+                JOIN curso cu ON cu.id_curso = m.id_curso
+                JOIN alumno a ON a.id_curso = cu.id_curso
+                JOIN padre_alumno pa ON pa.id_alumno = a.id_alumno
+                WHERE pa.id_padre = ? AND c.activo = 1
+            """;
         }
 
         if (filtroMateria != null && !filtroMateria.isEmpty())
@@ -90,6 +93,7 @@ public class ClaseDAO {
 
         } catch (Exception e) {
             System.err.println("Error al consultar clases: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return clases;

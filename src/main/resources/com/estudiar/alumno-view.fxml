@@ -16,7 +16,7 @@
         <VBox spacing="10" alignment="CENTER">
             <Button text="Consultar Agenda" onAction="#handleConsultarAgenda" layoutX="50" layoutY="150"/>
 
-            <Button text="Ver Mensajes"/>
+            <Button text="Ver Mensajes" onAction="#handleMensajes"/>
             <Button text="Cerrar Sesión" onAction="#handleLogout"/>
         </VBox>
     </center>

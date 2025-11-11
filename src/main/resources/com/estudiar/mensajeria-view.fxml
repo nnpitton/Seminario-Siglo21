@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.estudiar.controller.MensajeriaController"
+            prefWidth="800" prefHeight="600">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Sistema de Mensajería" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Nuevo Mensaje" onAction="#handleNuevoMensaje"
+                        style="-fx-background-color: #2e8b57; -fx-text-fill: white;"/>
+                <Button text="Recibidos" onAction="#handleMostrarRecibidos"/>
+                <Button text="Enviados" onAction="#handleMostrarEnviados"/>
+                <Label fx:id="lblNoLeidos" text="" style="-fx-text-fill: red; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.4" BorderPane.alignment="CENTER">
+
+            <!-- Panel izquierdo: Lista de mensajes -->
+            <VBox spacing="5">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5"/>
+                </padding>
+
+                <Label fx:id="lblTituloLista" text="Mensajes Recibidos"
+                       style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+
+                <TableView fx:id="tablaMensajes" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colEstado" text="📧" prefWidth="30"/>
+                        <TableColumn fx:id="colDe" text="De/Para" prefWidth="150"/>
+                        <TableColumn fx:id="colAsunto" text="Asunto" prefWidth="200"/>
+                        <TableColumn fx:id="colFecha" text="Fecha" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Panel derecho: Detalle del mensaje -->
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <Label text="Detalles del Mensaje" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="De:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                           style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblDe" text="" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Para:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                           style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblPara" text="" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Fecha:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                           style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblFecha" text="" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Asunto:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                           style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblAsunto" text="" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                </GridPane>
+
+                <Separator/>
+
+                <Label text="Mensaje:" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="txtMensaje" editable="false" wrapText="true" VBox.vgrow="ALWAYS"/>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button fx:id="btnResponder" text="Responder" onAction="#handleResponder"
+                            disable="true"/>
+                </HBox>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>

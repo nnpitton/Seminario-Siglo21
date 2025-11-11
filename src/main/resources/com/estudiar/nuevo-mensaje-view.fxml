@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.estudiar.controller.NuevoMensajeController"
+      spacing="15" prefWidth="500" prefHeight="400">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Nuevo Mensaje" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Para:" prefWidth="80" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="cmbDestinatario" prefWidth="350" promptText="Seleccione un destinatario"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Asunto:" prefWidth="80" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="txtAsunto" prefWidth="350" promptText="Ingrese el asunto del mensaje"/>
+    </HBox>
+
+    <VBox spacing="5" VBox.vgrow="ALWAYS">
+        <Label text="Mensaje:" style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="txtCuerpo" wrapText="true" VBox.vgrow="ALWAYS"
+                  promptText="Escriba su mensaje aquí..."/>
+    </VBox>
+
+    <Label fx:id="lblMensaje" textFill="red"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Enviar" onAction="#handleEnviar"
+                style="-fx-background-color: #2e8b57; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Cancelar" onAction="#handleCancelar"/>
+    </HBox>
+</VBox>

@@ -9,7 +9,7 @@
     <center>
         <VBox spacing="10" alignment="CENTER">
             <Button text="Registrar Clase" onAction="#abrirRegistrarClase"/>
-            <Button text="Enviar Mensaje"/>
+            <Button text="Enviar Mensaje" onAction="#handleMensajes"/>
             <Button text="Consultar Agenda" onAction="#handleConsultarAgenda" layoutX="50" layoutY="150"/>
 
             <Button text="Cerrar Sesión" onAction="#handleLogout"/>

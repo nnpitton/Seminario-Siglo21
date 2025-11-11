@@ -1,5 +1,6 @@
 package com.estudiar.controller;
 
+import com.estudiar.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,14 +17,12 @@ public class DocenteController {
         this.idDocenteActivo = idDocenteActivo;
     }
 
-    // 🔹 Método para abrir la vista de Registrar Clase
     @FXML
     private void abrirRegistrarClase(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/estudiar/RegistrarClaseView.fxml"));
             Parent root = loader.load();
 
-            // Pasamos el ID del docente logueado al controlador de la vista
             ClaseController claseController = loader.getController();
             claseController.setIdDocenteActivo(idDocenteActivo);
 
@@ -57,10 +56,46 @@ public class DocenteController {
         }
     }
 
-    // 🔹 Cerrar sesión (ya existente, ajustado)
+    @FXML
+    private void handleMensajes() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/estudiar/mensajeria-view.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Crear usuario con datos del docente
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(idDocenteActivo);
+            usuario.setIdRol(2); // Rol docente
+
+            MensajeriaController controller = loader.getController();
+            controller.inicializar(usuario);
+
+            Stage stage = new Stage();
+            stage.setTitle("Mensajería - Docente");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleLogout(ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            // Cargar la vista de login
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/estudiar/login-view.fxml"));
+            Scene loginScene = new Scene(loader.load());
+
+            // Obtener el stage actual y cambiar a la escena de login
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(loginScene);
+            stage.setTitle("Estudi-AR - Iniciar Sesión");
+            stage.show();
+
+        } catch (Exception e) {
+            System.err.println("Error al volver al login: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
